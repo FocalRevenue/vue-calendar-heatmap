@@ -189,7 +189,7 @@ export default {
       if (this.tooltip) {
         if (day.count != null) {
           return {
-            content: `<b>${day.count} ${numeral(this.tooltipUnit).format(this.numericFormat)}</b> ${this.lo.on} ${this.lo.months[day.date.getMonth()]} ${day.date.getDate()}, ${day.date.getFullYear()}`,
+            content: `<b>${numeral(day.count).format(this.numericFormat)} ${this.tooltipUnit}</b> ${this.lo.on} ${this.lo.months[day.date.getMonth()]} ${day.date.getDate()}, ${day.date.getFullYear()}`,
             delay: { show: 150, hide: 50 }
           }
         } else if (this.noDataText) {
