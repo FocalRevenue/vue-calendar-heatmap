@@ -47,7 +47,6 @@
         )
           rect.vch__day__square(
             v-for="(day, dayIndex) in week",
-            v-if="day.date < now"
             :key="dayIndex",
             :transform="getDayPosition(dayIndex)"
             :width="SQUARE_SIZE - SQUARE_BORDER_SIZE",
@@ -62,6 +61,7 @@
 import { VTooltip } from 'v-tooltip'
 import Heatmap from './Heatmap'
 import { DAYS_IN_WEEK, DEFAULT_LOCALE, DEFAULT_RANGE_COLOR, DEFAULT_TOOLTIP_UNIT, SQUARE_SIZE } from './consts.js'
+const numeral = require('numeral');
 
 VTooltip.enabled = window.innerWidth > 768
 
@@ -103,6 +103,10 @@ export default {
     noDataText: {
       type: String,
       default: null
+    },
+    numericFormat: {
+      type: String,
+      default: '0,0'
     }
   },
 
@@ -185,7 +189,7 @@ export default {
       if (this.tooltip) {
         if (day.count != null) {
           return {
-            content: `<b>${day.count} ${this.tooltipUnit}</b> ${this.lo.on} ${this.lo.months[day.date.getMonth()]} ${day.date.getDate()}, ${day.date.getFullYear()}`,
+            content: `<b>${day.count} ${numeral(this.tooltipUnit).format(this.numericFormat)}</b> ${this.lo.on} ${this.lo.months[day.date.getMonth()]} ${day.date.getDate()}, ${day.date.getFullYear()}`,
             delay: { show: 150, hide: 50 }
           }
         } else if (this.noDataText) {

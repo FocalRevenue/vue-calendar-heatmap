@@ -157,6 +157,12 @@ Boolean to switch to vertical mode. `false` by default.
  <calendar-heatmap :vertical="true" ... />
 ```
 
+### **numericFormat** - `numeric-format`
+String to change how the display the format of the `count` in data tooltip
+``` html
+ <calendar-heatmap :numeric-format="0,0" ... />
+```
+
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
