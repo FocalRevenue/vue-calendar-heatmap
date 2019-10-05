@@ -10,7 +10,9 @@ export default class CalendarHeatmap {
   }
 
   get activities () {
+    console.log({values: this.values})
     return this.values.reduce((newValues, day) => {
+      console.log({_keyDayParser: this._keyDayParser(day.date), 'day.date': day.date})
       newValues[this._keyDayParser(day.date)] = {
         count: day.count,
         colorIndex: this.getColorIndex(day.count)
@@ -25,13 +27,11 @@ export default class CalendarHeatmap {
 
   get calendar () {
     let date = this._shiftDate(this.startDate, -this.getCountEmptyDaysAtStart())
-    console.log({date})
     return Array.from({ length: this.weekCount },
       () => Array.from({ length: DAYS_IN_WEEK },
         () => {
           let dDate = new Date(date.getFullYear(), date.getMonth(), date.getDate())
           let dayValues = this.activities[this._keyDayParser(dDate)]
-          console.log({dDate, dayValues})
           date.setDate(date.getDate() + 1)
           return {
             date: dDate,
