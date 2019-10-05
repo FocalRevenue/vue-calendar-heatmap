@@ -74,6 +74,9 @@ export default {
     endDate: {
       required: true
     },
+    startDate: {
+      required: true
+    },
     max: {
       type: Number
     },
@@ -124,7 +127,7 @@ export default {
       return `translate(${this.tooltipX}, ${this.tooltipY})`
     },
     heatmap () {
-      return new Heatmap(this.endDate, this.values, this.max)
+      return new Heatmap(this.endDate, this.values, this.max, this.startDate)
     },
     width () {
       return {
