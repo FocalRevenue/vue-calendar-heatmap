@@ -31,7 +31,6 @@ export default class CalendarHeatmap {
           let dDate = new Date(date.getFullYear(), date.getMonth(), date.getDate())
           let dayValues = this.activities[this._keyDayParser(dDate)]
           date.setDate(date.getDate() + 1)
-          console.log({dDate, dayValues, date})
           return {
             date: dDate,
             count: dayValues ? dayValues.count : null,
